@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Feliz Cumpleaños Alejandra! 🎉</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(-45deg, #9966CC, #4169E1, #6A5ACD);
+            background-size: 400% 400%;
+            animation: gradientShift 20s ease infinite;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Menú Principal */
+        .main-menu {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+            z-index: 100;
+            opacity: 1;
+            transition: all 0.8s ease;
+        }
+
+        .main-menu.hidden {
+            opacity: 0;
+            transform: translateY(-50px);
+            pointer-events: none;
+        }
+
+        .menu-title {
+            font-size: 4rem;
+            color: white;
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6);
+            margin-bottom: 1rem;
+            animation: gentleBounce 3s ease-in-out infinite;
+            text-align: center;
+        }
+
+        .menu-subtitle {
+            font-size: 1.8rem;
+            color: #E6E6FA;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+            margin-bottom: 3rem;
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        .gift-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            width: 100%;
+            margin-bottom: 2rem;
+        }
+
+        .gift-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 2rem;
+            text-align: center;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 380px;
+            /* Altura fija para todas las tarjetas */
+        }
+
+        .gift-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .gift-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .gift-card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .gift-card:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .gift-card:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        .gift-card:nth-child(6) {
+            animation-delay: 0.6s;
+        }
+
+        .gift-card:nth-child(7) {
+            animation-delay: 0.7s;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .gift-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 255, 255, 0.6);
+        }
+
+        .gift-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: translateX(-100%) translateY(-100%) rotate(45deg);
+            transition: transform 0.8s ease;
+        }
+
+        .gift-card:hover::before {
+            transform: translateX(100%) translateY(100%) rotate(45deg);
+        }
+
+        /* Contenedor de imagen estandarizado */
+        .gift-image-container {
+            width: 100%;
+            height: 180px;
+            margin-bottom: 1rem;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .gift-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(1.1) contrast(1.05);
+            transition: transform 0.3s ease;
+        }
+
+        .gift-card:hover .gift-image-container img {
+            transform: scale(1.1);
+        }
+
+        .gift-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .gift-title {
+            font-size: 1.5rem;
+            color: white;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .gift-description {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+            line-height: 1.4;
+        }
+
+        /* Colores temáticos para cada tarjeta */
+        .snoopy-card {
+            border-color: rgba(153, 102, 204, 0.8);
+        }
+
+        .snoopy-card:hover {
+            background: rgba(153, 102, 204, 0.2);
+        }
+
+        .elche-card {
+            border-color: rgba(255, 140, 0, 0.8);
+        }
+
+        .elche-card:hover {
+            background: rgba(255, 140, 0, 0.2);
+        }
+
+        .sunflower-card {
+            border-color: rgba(255, 215, 0, 0.8);
+        }
+
+        .sunflower-card:hover {
+            background: rgba(255, 215, 0, 0.2);
+        }
+
+        .pasta-card {
+            border-color: rgba(244, 164, 96, 0.8);
+        }
+
+        .pasta-card:hover {
+            background: rgba(244, 164, 96, 0.2);
+        }
+
+        .bts-card {
+            border-color: rgba(138, 43, 226, 0.8);
+        }
+
+        .bts-card:hover {
+            background: rgba(138, 43, 226, 0.2);
+        }
+
+        .fotografia-card {
+            border-color: rgba(70, 130, 180, 0.8);
+        }
+
+        .fotografia-card:hover {
+            background: rgba(70, 130, 180, 0.2);
+        }
+
+        .final-card {
+            border-color: rgba(255, 20, 147, 0.8);
+            background: rgba(255, 20, 147, 0.1);
+        }
+
+        .final-card:hover {
+            background: rgba(255, 20, 147, 0.25);
+            border-color: rgba(255, 20, 147, 1);
+        }
+
+        /* Botón de regreso */
+        .back-button {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            padding: 15px 25px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            font-size: 1rem;
+            font-weight: 500;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+            opacity: 0;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .back-button.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Secciones de contenido */
+        .content-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0;
+            transform: translateY(50px) scale(0.95);
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+            pointer-events: none;
+        }
+
+        .content-section.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: all;
+        }
+
+        .content-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.15;
+            z-index: 1;
+        }
+
+        .snoopy-section::before {
+            background-image: url('https://img.freepik.com/premium-vector/christmas-snoopy-vector-illustration-snoopy-vector-art_1211862-92.jpg');
+        }
+
+        .elche-section::before {
+            background-image: url('https://www.shutterstock.com/image-vector/elche-spain-skyline-silhouette-vector-260nw-2629867931.jpg');
+        }
+
+        .sunflower-section::before {
+            background-image: url('https://img.freepik.com/vector-premium/vector-girasol-aislado-fondo-blanco_1023984-34828.jpg');
+        }
+
+        .pasta-section::before {
+            background-image: url('https://images.aws.nestle.recipes/resized/cc72869fabfc2bdfa036fd1fe0e2bad8_creamy_alfredo_pasta_long_left_1200_628.jpg');
+        }
+
+        .bts-section::before {
+            background-image: url('https://i.pinimg.com/736x/ed/ef/37/edef37ea595285654f3cdc00f0c45d0c.jpg');
+        }
+
+        .fotografia-section::before {
+            background-image: url('https://media.joomeo.com/large/68d4ba025ed57.jpg');
+        }
+
+        .final-section::before {
+            background-image: url('https://i.pinimg.com/736x/26/76/96/2676960a0e4e9f7470e5ca81fe0dafe7.jpg');
+        }
+
+        .snoopy-section {
+            background: linear-gradient(135deg, rgba(153, 102, 204, 0.9), rgba(138, 43, 226, 0.9));
+        }
+
+        .elche-section {
+            background: linear-gradient(135deg, rgba(255, 140, 0, 0.9), rgba(255, 165, 0, 0.9));
+        }
+
+        .sunflower-section {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.9), rgba(255, 165, 0, 0.9));
+        }
+
+        .pasta-section {
+            background: linear-gradient(135deg, rgba(244, 164, 96, 0.9), rgba(210, 180, 140, 0.9));
+        }
+
+        .bts-section {
+            background: linear-gradient(135deg, rgba(106, 90, 205, 0.9), rgba(75, 0, 130, 0.9));
+        }
+
+        .fotografia-section {
+            background: linear-gradient(135deg, rgba(70, 130, 180, 0.9), rgba(100, 149, 237, 0.9));
+        }
+
+        .final-section {
+            background: linear-gradient(135deg, rgba(153, 102, 204, 0.9), rgba(138, 43, 226, 0.9));
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            border-radius: 30px;
+            padding: 3.5rem;
+            text-align: center;
+            max-width: 900px;
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            z-index: 15;
+        }
+
+        h1,
+        h2 {
+            color: white;
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6);
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            animation: gentleBounce 3s ease-in-out infinite;
+        }
+
+        h2 {
+            font-size: 2.8rem;
+            color: #E6E6FA;
+        }
+
+        @keyframes gentleBounce {
+
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+            }
+
+            50% {
+                transform: translateY(-8px) scale(1.02);
+            }
+        }
+
+        p {
+            font-size: 1.4rem;
+            color: white;
+            line-height: 1.9;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+            margin-bottom: 2rem;
+        }
+
+        .image-container {
+            width: 250px;
+            height: 250px;
+            margin: 2rem auto;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .image-container:hover {
+            transform: scale(1.1) rotate(3deg);
+            border-color: rgba(255, 255, 255, 0.6);
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(1.1) contrast(1.1);
+        }
+
+        .icon-decoration {
+            font-size: 2.5rem;
+            margin: 0.8rem;
+            color: white;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+            display: inline-block;
+            animation: gentleWiggle 3s ease-in-out infinite;
+        }
+
+        @keyframes gentleWiggle {
+
+            0%,
+            100% {
+                transform: rotate(0deg);
+            }
+
+            25% {
+                transform: rotate(-5deg);
+            }
+
+            75% {
+                transform: rotate(5deg);
+            }
+        }
+
+        .music-note {
+            position: absolute;
+            font-size: 2rem;
+            color: #9966CC;
+            animation: musicFloat 5s infinite ease-in-out;
+            opacity: 0.7;
+        }
+
+        @keyframes musicFloat {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.4;
+            }
+
+            50% {
+                transform: translateY(-30px) rotate(180deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(0) rotate(360deg);
+                opacity: 0.4;
+            }
+        }
+
+        /* Efectos especiales */
+        .floating-hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 1.8rem;
+            color: #FF69B4;
+            animation: floatHeart 8s infinite linear;
+            opacity: 0.8;
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.8;
+            }
+
+            90% {
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: translateY(-100px) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .sparkles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .sparkle {
+            position: absolute;
+            color: #FFD700;
+            font-size: 1.2rem;
+            animation: sparkleAnim 4s infinite ease-in-out;
+        }
+
+        @keyframes sparkleAnim {
+
+            0%,
+            100% {
+                opacity: 0;
+                transform: scale(0) rotate(0deg);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.5) rotate(180deg);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .menu-title {
+                font-size: 2.5rem;
+            }
+
+            .menu-subtitle {
+                font-size: 1.4rem;
+            }
+
+            .gift-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 0 1rem;
+            }
+
+            .gift-card {
+                padding: 1.5rem;
+                height: 350px;
+            }
+
+            .gift-image-container {
+                height: 160px;
+            }
+
+            .back-button {
+                top: 20px;
+                left: 20px;
+                padding: 10px 20px;
+            }
+
+            .card {
+                padding: 2rem;
+                margin: 1rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            p {
+                font-size: 1.2rem;
+            }
+
+            .image-container {
+                width: 200px;
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="floating-hearts" id="hearts"></div>
+    <div class="sparkles" id="sparkles"></div>
+
+    <!-- Botón de regreso -->
+    <button class="back-button" id="backButton">
+        <i class="fas fa-arrow-left"></i> Regresar al Menú
+    </button>
+
+    <!-- Menú Principal -->
+    <div class="main-menu" id="mainMenu">
+        <h1 class="menu-title">¡Feliz Cumpleaños Aleja bonita! 🎂</h1>
+        <p class="menu-subtitle">
+            ✨ Te preparé esta pequeña caja de regalos. Cada una de las cosas que encontrarás a continuación me recuerdan
+            a ti, siempre que lo veo por la calle o donde sea que esté lo primero que se me viene a la mente eres TÚ,
+            así que, de esta manera te veo ✨<br>
+            Elige cualquier regalo para abrirlo
+        </p>
+
+        <div class="gift-grid">
+            <div class="gift-card snoopy-card" onclick="openSection('snoopy')">
+                <div class="gift-image-container">
+                    <img src="https://img.freepik.com/premium-vector/christmas-snoopy-vector-illustration-snoopy-vector-art_1211862-92.jpg"
+                        alt="Snoopy">
+                </div>
+                <div class="gift-content">
+                    <h3 class="gift-title">Snoopy bonito</h3>
+                    <p class="gift-description">Dulce, tierna y especial</p>
+                </div>
+            </div>
+
+            <div class="gift-card elche-card" onclick="openSection('elche')">
+                <div class="gift-image-container">
+                    <img src="https://www.shutterstock.com/image-vector/elche-spain-skyline-silhouette-vector-260nw-2629867931.jpg"
+                        alt="Elche">
+                </div>
+                <div class="gift-content">
+                    <h3 class="gift-title">Elche</h3>
+                    <p class="gift-description">Antes para mi Elche era solo el equipo de fútbol, ahora eres tú</p>
+                </div>
+            </div>
+
+            <div class="gift-card sunflower-card" onclick="openSection('sunflower')">
+                <div class="gift-image-container">
+                    <img src="https://img.freepik.com/vector-premium/vector-girasol-aislado-fondo-blanco_1023984-34828.jpg"
+                        alt="Girasol">
+                </div>
+                <div class="gift-content">
+                    <h3 class="gift-title">Girasol brillante</h3>
+                    <p class="gift-description">Tu presencia es así de brillante para mi</p>
+                </div>
+            </div>
+
+            <div class="gift-card pasta-card" onclick="openSection('pasta')">
+                <div class="gift-image-container">
+                    <img src="https://images.aws.nestle.recipes/resized/cc72869fabfc2bdfa036fd1fe0e2bad8_creamy_alfredo_pasta_long_left_1200_628.jpg"
+                        alt="Pasta">
+                </div>
+                <div class="gift-content">
+                    <h3 class="gift-title">Pasta</h3>
+                    <p class="gift-description">Esta no te la esperabas</p>
+                </div>
+            </div>
+
+            <div class="gift-card bts-card" onclick="openSection('bts')">
+                <div class="gift-image-container">
+                    <img src="https://i.pinimg.com/736x/ed/ef/37/edef37ea595285654f3cdc00f0c45d0c.jpg" alt="BTS">
+                </div>
+                <div class="gift-content">
+                    <h3 class="gift-title">BTS, Army y V</h3>
+                    <p class="gift-description">Porque sé que te encanta (aunque me de celos Taehyung)</p>
+                </div>
+            </div>
+
+            <div class="gift-card fotografia-card" onclick="openSection('fotografia')">
+                <div class="gift-image-container">
+                    <img src="https://media.joomeo.com/large/68d4ba025ed57.jpg" alt="Fotografía">
+                </div>
+                <div class="gift-content">
+                    <h3 class="gift-title">La Fotografía</h3>
+                    <p class="gift-description">Me encanta lo que haces</p>
+                </div>
+            </div>
+
+            <div>
+
+            </div>
+
+            <div class="gift-card final-card" onclick="openSection('final')">
+                <div class="gift-image-container">
+                    <img src="https://i.pinimg.com/736x/26/76/96/2676960a0e4e9f7470e5ca81fe0dafe7.jpg"
+                        alt="Y para terminar">
+                </div>
+                <div class="gift-content">
+                    <h3 class="gift-title">Y para terminar...</h3>
+                    <p class="gift-description">Míralo al final no seas tramposa</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección Snoopy -->
+    <div class="content-section snoopy-section" id="snoopy">
+        <div class="card">
+            <h2>Tu y Snoopy me provocan la misma ternura al verlos</h2>
+            <div class="image-container">
+                <img src="https://scontent.fuio35-1.fna.fbcdn.net/v/t39.30808-6/480864390_1156113716161308_760931979704694621_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=aa7b47&_nc_ohc=AW5gKHuXYuYQ7kNvwEBJevi&_nc_oc=Admnk7i_5qISK_516JwMywdmBxqDKdk1idqlS357Rr3Lzj4xxrpItuupZhYB2ThfzUFdn08aO3ozaoto7e3XknrS&_nc_zt=23&_nc_ht=scontent.fuio35-1.fna&_nc_gid=WyBHTg5PJp17C1pvOZYf-w&oh=00_AfamcJ7ZrLPyoHQrmG5smfaoo_X1GvEP7S0MInry9BKbkw&oe=68DAA218"
+                    alt="Cute beagle dog">
+            </div>
+            <p>¿Sabes?, es raro describirlo. Pero el ver a Snoopy me recuerda a ti, y de hecho, cada vez que lo veo me
+                imagino a ti haciendo las mismas expresiones que el hace. Cuando te seguí en el tiquituqui recuerdo
+                tenías esa foto de perfil de él manejando, y por esa época estabas sacando el carnét de conducir, y te
+                imaginaba así, feliz conduciendo (si, si me acuerdo que te costó un poquitomucho sacarlo, pero aún así,
+                te imaginaba así de sonriente cuando lo obtuviste)</p>
+            <div class="icon-decoration">🏠</div>
+            <div class="icon-decoration">❤️</div>
+            <div class="icon-decoration">🐾</div>
+        </div>
+    </div>
+
+    <!-- Sección Elche -->
+    <div class="content-section elche-section" id="elche">
+        <div class="card">
+            <h2>Elche 🌴</h2>
+            <div class="image-container">
+                <img src="https://media.joomeo.com/large/68d4bdfbd8db8.jpg" alt="Beautiful Mediterranean landscape">
+            </div>
+            <p>Antes de ti, para mi Elche solo era una ciudad donde juega un equipo de España que sube y baja de
+                categoría XD.</p>
+            <p>Pero, ahora que estás tú, para mi se convirtió en un lugar importante, tan importante que hasta me tienes
+                viendo el clima y la hora de allá cada tanto. Y es importante sobre todo porque ahí estás tú, y jamás me
+                hubiese planteado siquiera ir por ahí, pero ahora que estás tú, sería incluso un sueño cumplido ir.</p>
+            <div class="icon-decoration">🌴</div>
+            <div class="icon-decoration">☀️</div>
+            <div class="icon-decoration">🏛️</div>
+        </div>
+    </div>
+
+    <!-- Sección Girasoles -->
+    <div class="content-section sunflower-section" id="sunflower">
+        <div class="card">
+            <h2>Gira girasol 🌻</h2>
+            <div class="image-container">
+                <img src="https://as2.ftcdn.net/jpg/00/82/86/53/1000_F_82865320_6xDbY4fDiSpuvWhCkwf8QKUSNdQMlXBh.jpg"
+                    alt="Beautiful sunflower field">
+            </div>
+            <p>Siempre me llamaron la atención los girasoles, se me hacen bonitos en realidad. Pero ahora gracias a ti,
+                cada que veo uno no puedo evitar pensar "Si Aleja estuviera aquí le diría: mira, un girasol!". O cada
+                que veo en alguna floristería o algún vendedor por la calle pienso: "Ojalá pueda regalarle algunas un
+                día". Para mi, Aleja = Girasoles.</p>
+            <div class="icon-decoration">☀️</div>
+            <div class="icon-decoration">🌼</div>
+            <div class="icon-decoration">✨</div>
+        </div>
+    </div>
+
+    <!-- Sección Pasta -->
+    <div class="content-section pasta-section" id="pasta">
+        <div class="card">
+            <h2>Seguramente esta te parecerá rara xd</h2>
+            <div class="image-container">
+                <img src="https://res.cloudinary.com/postable/image/upload/t_thumb/t_med/f_auto,q_auto/v1700592337/cards/masters/GOODTWIN292"
+                    alt="Delicious pasta dish">
+            </div>
+            <p>Te relaciono con la pasta porque cuando te pregunté dijiste que esta es tu comida favorita, y, aunque sé
+                que en realidad te gustan muchas muchas cosas porque te gusta comer de todo, ahora cada que veo pastas
+                en el menú no puedo dejar de pensar en ti, y similar a lo de los girasoles, pienso: "Me encataría poder
+                invitarla aquí para que pida un plato de alguna pasta" </p>
+            <div class="icon-decoration">🍴</div>
+            <div class="icon-decoration">🧄</div>
+            <div class="icon-decoration">🍅</div>
+        </div>
+    </div>
+
+    <!-- Sección BTS -->
+    <div class="content-section bts-section" id="bts">
+        <div class="card">
+            <div class="music-note" style="top: 15%; left: 15%;">♪</div>
+            <div class="music-note" style="top: 25%; right: 20%; animation-delay: 0.8s;">♫</div>
+            <div class="music-note" style="bottom: 35%; left: 25%; animation-delay: 1.5s;">♪</div>
+            <div class="music-note" style="bottom: 20%; right: 15%; animation-delay: 2.2s;">♫</div>
+            <h2>Permiso para bailar 💜</h2>
+            <div class="image-container">
+                <img src="https://i.pinimg.com/736x/39/d2/15/39d21581b5ec53df9140d32039f41f08.jpg"
+                    alt="Concert stage with purple lights">
+            </div>
+            <p>Como me voy a olvidar de mi Army favorita. Bueno, tu y mi heramana lo son jaja. Pero sí, y además con lo
+                cerca que los tengo a veces por mi hermana no puedo no pensar en ti cada vez que veo algo sobre ellos
+            </p>
+            <p>PDT.: si vi esa historia que subiste abrazando a V, eh! No hemos hablado de eso pero ya todo a su tiempo,
+                jummm!</p>
+            <div class="icon-decoration">🎤</div>
+            <div class="icon-decoration">💜</div>
+            <div class="icon-decoration">🌟</div>
+        </div>
+    </div>
+
+    <!-- Sección Fotografía -->
+    <div class="content-section fotografia-section" id="fotografia">
+        <div class="card">
+            <h2>Chin chin! 📷</h2>
+            <div class="image-container">
+                <img src="https://media.joomeo.com/large/68d4bed3be4b5.jpg" alt="Beautiful camera and photography">
+            </div>
+            <p>He visto poco de tus capturas, pero lo suficiente como para saber que lo haces muy bien y que me encanta.
+                Me encanta cuando me mandas fotos, y, sabes? Cuando las tomo yo las hago pensando en ti y en
+                enviártelas.</p>
+            <p>Historia chistosa: hace como 3 semanas estuve en una feria por aqui cerca, y había un stand de cámaras
+                profesionales, las estuve usando un rato y pues aunque no las iba a comprar porque costaban de los mil
+                dólares para arriba, siempre pensaba: "A Aleja seguramente le gustaría mucho tener una de estas"</p>
+            <div class="icon-decoration">📸</div>
+            <div class="icon-decoration">🎨</div>
+            <div class="icon-decoration">✨</div>
+        </div>
+    </div>
+
+    <!-- Sección Final -->
+    <div class="content-section final-section" id="final">
+        <div class="card">
+            <h2>Y para terminar... 💕</h2>
+            <div class="image-container">
+                <img src="https://i.pinimg.com/736x/26/76/96/2676960a0e4e9f7470e5ca81fe0dafe7.jpg" alt="Final message">
+            </div>
+            <p>Para mi eres especial por esto, porque siempre te tengo en mi cabeza, porque te pienso todos los días,
+                porque estás presente en muchas cosas y lugares de mi día a día. Estas son algunas de las razones.</p>
+            <p>Cuando veas esto seguramente ya será pasada la tarde, así que, espero que tu día siga siendo igual de
+                bonito como cuando te mandé tu primer regalo, quisiera que mantengas esa emoción y esa alegría, no solo
+                hoy, sino siempre! Te quiero mucho Aleja, feliz cumpleaños por 42423 vez en el día 🎂✨</p>
+            <div class="icon-decoration">🎉</div>
+            <div class="icon-decoration">💖</div>
+            <div class="icon-decoration">🌟</div>
+        </div>
+    </div>
+
+    <script>
+        // Variables globales
+        const mainMenu = document.getElementById('mainMenu');
+        const backButton = document.getElementById('backButton');
+        const sections = document.querySelectorAll('.content-section');
+
+        // Función para abrir una sección
+        function openSection(sectionId) {
+            // Ocultar menú principal con animación
+            mainMenu.classList.add('hidden');
+
+            // Mostrar botón de regreso
+            setTimeout(() => {
+                backButton.classList.add('visible');
+            }, 400);
+
+            // Mostrar sección correspondiente
+            setTimeout(() => {
+                const targetSection = document.getElementById(sectionId);
+                if (targetSection) {
+                    targetSection.classList.add('active');
+                }
+            }, 600);
+        }
+
+        // Función para regresar al menú
+        function backToMenu() {
+            // Ocultar botón de regreso
+            backButton.classList.remove('visible');
+
+            // Ocultar todas las secciones
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Mostrar menú principal
+            setTimeout(() => {
+                mainMenu.classList.remove('hidden');
+            }, 400);
+        }
+
+        // Event listener para el botón de regreso
+        backButton.addEventListener('click', backToMenu);
+
+        // Generar corazones flotantes
+        function createHeart() {
+            const hearts = ['💜', '💖', '💕', '💗', '❤️'];
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDelay = Math.random() * 2 + 's';
+            heart.style.animationDuration = (Math.random() * 3 + 6) + 's';
+            document.getElementById('hearts').appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 9000);
+        }
+
+        // Generar sparkles
+        function createSparkle() {
+            const sparkles = ['✨', '⭐', '🌟', '💫', '⚡'];
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.innerHTML = sparkles[Math.floor(Math.random() * sparkles.length)];
+            sparkle.style.left = Math.random() * 100 + 'vw';
+            sparkle.style.top = Math.random() * 100 + 'vh';
+            sparkle.style.animationDelay = Math.random() * 2 + 's';
+            document.getElementById('sparkles').appendChild(sparkle);
+
+            setTimeout(() => {
+                sparkle.remove();
+            }, 4000);
+        }
+
+        // Crear efectos visuales
+        setInterval(createHeart, 1200);
+        setInterval(createSparkle, 2000);
+
+        // Efecto de cursor con sparkles
+        document.addEventListener('mousemove', (e) => {
+            if (Math.random() > 0.98) {
+                createSparkleAtCursor(e.clientX, e.clientY);
+            }
+        });
+
+        function createSparkleAtCursor(x, y) {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.innerHTML = '✨';
+            sparkle.style.left = x + 'px';
+            sparkle.style.top = y + 'px';
+            sparkle.style.position = 'fixed';
+            sparkle.style.pointerEvents = 'none';
+            sparkle.style.zIndex = '1000';
+            document.body.appendChild(sparkle);
+
+            setTimeout(() => {
+                sparkle.remove();
+            }, 2000);
+        }
+
+        // Animación inicial del menú
+        document.addEventListener('DOMContentLoaded', function () {
+            // Pequeña animación de bienvenida
+            setTimeout(() => {
+                document.querySelector('.menu-title').style.opacity = '1';
+                document.querySelector('.menu-subtitle').style.opacity = '1';
+            }, 300);
+        });
+    </script>
+</body>
+
+</html>
